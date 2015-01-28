@@ -9,7 +9,7 @@ public class PanelToListenerValue {
 	private int col =0;
 	private int speed =0;
 	private int randnum =0;
-	private boolean[][] item;
+	private boolean[][][] item;
 	private int rotateNum =0;
 	
 	
@@ -45,11 +45,11 @@ public class PanelToListenerValue {
 		this.randnum = randnum;
 	}
 
-	public boolean[][] getItem() {
+	public boolean[][][] getItem() {
 		return item;
 	}
 
-	public void setItem(boolean[][] item) {
+	public void setItem(boolean[][][] item) {
 		this.item = item;
 	}
 

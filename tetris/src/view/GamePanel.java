@@ -56,6 +56,35 @@ public class GamePanel extends JPanel {
 			}
 		}
 	}
+
+	
+	public void removeFullLine(){
+		
+		int lineIndex[] = new int[TetrisConstant.ROWS];
+		int index=0;
+		
+		for(int i=0; i< TetrisConstant.ROWS ;i++){
+			int col =0; 
+
+			for(int j=0; j< TetrisConstant.COLS ;j++){
+				if(statue[i][j]){
+					col++;
+				}
+			}
+			if(col == TetrisConstant.COLS){
+				lineIndex[index++] = i;
+			}
+		}
+		
+		for(int i=0; i<lineIndex.length;i++){
+			for(int j=lineIndex[i]; j>0;j--){
+				for(int k=0; k< TetrisConstant.COLS; k++){
+					statue[j][k] = statue[j-1][k];
+					color[j][k] = color[j-1][k];
+				}
+			}
+		}
+	}
 	
 	public void drawBlock(int x,int y, boolean[][] item,Color color){
 		for(int i=0 ;i <item.length ;i++){

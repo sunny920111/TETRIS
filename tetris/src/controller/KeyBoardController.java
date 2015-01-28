@@ -27,25 +27,33 @@ public class KeyBoardController implements KeyEventDispatcher {
 			
 			if(e.getKeyCode() == TetrisConstant.KEY_LEFT){
 				
-				/*if(!valid.checkLeftSide(value.getItem(), user.getStatue(), value.getRow(), value.getCol())){
-					value.setCol(value.getCol()-1);
-				}*/
-				
-				value.setCol(value.getCol()-1);
-
+				if(!valid.checkLeftSide(value.getItem()[value.getRotateNum()], user.getStatue(), value.getRow(), value.getCol())){
+					if(!valid.checkBottomSide(value.getItem()[value.getRotateNum()], user.getStatue(), value.getRow(), value.getCol())){
+						value.setCol(value.getCol()-1);
+					}
+				}
+	
 			}else if(e.getKeyCode() == TetrisConstant.KEY_RIGHT){
-				
-				/*if(!valid.checkRightSide(value.getItem(), user.getStatue(), value.getRow(), value.getCol()+1)){
-					value.setCol(value.getCol()+1);
-				}*/
-				
-				value.setCol(value.getCol()+1);
+				if(!valid.checkRightSide(value.getItem()[value.getRotateNum()], user.getStatue(), value.getRow(), value.getCol())){
+					if(!valid.checkBottomSide(value.getItem()[value.getRotateNum()], user.getStatue(), value.getRow(), value.getCol())){
+						value.setCol(value.getCol()+1);
+					}
+				}
+
 			}else if(e.getKeyCode() == TetrisConstant.KEY_DOWN){
 				value.setSpeed(DOWN_SPEED);
 			}else if(e.getKeyCode() == TetrisConstant.KEY_HOLD){
 				
 			}else if(e.getKeyCode() == TetrisConstant.KEY_UP){
-				value.setRandnum((value.getRandnum()+1)%4);
+				if(!valid.checkLeftSide(value.getItem()[(value.getRotateNum()+1)%4], user.getStatue(), value.getRow(), value.getCol())){
+					if(!valid.checkRightSide(value.getItem()[(value.getRotateNum()+1)%4], user.getStatue(), value.getRow(), value.getCol())){
+						if(!valid.checkBottomSide(value.getItem()[(value.getRotateNum()+1)%4], user.getStatue(), value.getRow(), value.getCol())){
+							value.setRotateNum((value.getRotateNum()+1)%4);
+					 	}
+					}				
+				}
+				
+				
 			}else if(e.getKeyCode() == TetrisConstant.KEY_SPACE){
 				value.setSpeed(SPACE_SPEED);
 			}

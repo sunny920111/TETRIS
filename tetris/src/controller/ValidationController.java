@@ -8,33 +8,46 @@ public class ValidationController {
 		if(col==0){
 			return true;
 		}
-		
-		
-		for(int i=row ; i< row+item.length ;i++){
-			for(int j = col-1 ; j<col+item.length ; j++){
-				if(statue[i][j]){
-					return true;
+			
+		for(int i=item.length-1; i >=0 ;i--){
+			for(int j=0; j<item[i].length;j++){
+				if(col+j-1 >=0){ //하단에 내려왔을때
+					if(statue[row+i][col+j-1] && item[i][j]){
+						return true;
+					}	
+					if(row+item.length != TetrisConstant.ROWS){
+						if(statue[row+i+1][col+j-1] && item[i][j]){
+							return true;
+						}
+					}
 				}
 			}
-		}
+		} 
+		
 		
 		return false;
 	}
 	
 	public boolean checkRightSide(boolean[][] item, boolean[][] statue,int row,int col){
-		
-		if(col+item.length==TetrisConstant.COLS){
+
+		if(col+item[0].length >= TetrisConstant.COLS){
 			return true;
 		}
 		
-		
-		for(int i=row ; i<= row+item.length ;i++){
-			if(i != TetrisConstant.ROWS ){
-				if(statue[i][col+item.length]){
-					return true;
+		for(int i=item.length-1; i >=0 ;i--){
+			for(int j=0; j<item[i].length;j++){
+				if(col+j+1 < TetrisConstant.COLS ){ //하단에 내려왔을때
+					if(statue[row+i][col+j+1] && item[i][j]){
+						return true;
+					}
+					if(row+item.length != TetrisConstant.ROWS){ 
+						if(statue[row+i+1][col+j+1] && item[i][j]){
+							return true;
+						}
+					}
 				}
 			}
-		}
+		} 
 		
 		return false; 
 	}
@@ -43,11 +56,13 @@ public class ValidationController {
 		
 		for(int i=item.length-1; i >=0 ;i--){
 			for(int j=0; j<item[i].length;j++){
-				if(row+item.length == TetrisConstant.ROWS ){ //하단에 내려왔을때
+				if(row+item.length == TetrisConstant.ROWS){ //하단에 내려왔을때
 					return true; 
 				}else{
-					if(statue[row+i+1][col+j]){
-						return true;
+					if(col+j <TetrisConstant.COLS){
+						if(statue[row+i+1][col+j] && item[i][j]){
+							return true;
+						}
 					}
 				}
 			}
