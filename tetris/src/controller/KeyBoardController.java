@@ -14,6 +14,10 @@ public class KeyBoardController implements KeyEventDispatcher {
 	PanelToListenerValue value = PanelToListenerValue.getInstance();
 	GamePanel user = GameValue.getUsers(0);
 	
+	private static final int DOWN_SPEED =50;
+	private static final int DEFAULT_SPEED =100;
+	private static final int SPACE_SPEED =5;
+	
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -36,11 +40,21 @@ public class KeyBoardController implements KeyEventDispatcher {
 				}*/
 				
 				value.setCol(value.getCol()+1);
+			}else if(e.getKeyCode() == TetrisConstant.KEY_DOWN){
+				value.setSpeed(DOWN_SPEED);
+			}else if(e.getKeyCode() == TetrisConstant.KEY_HOLD){
+				
+			}else if(e.getKeyCode() == TetrisConstant.KEY_UP){
+				value.setRandnum((value.getRandnum()+1)%4);
+			}else if(e.getKeyCode() == TetrisConstant.KEY_SPACE){
+				value.setSpeed(SPACE_SPEED);
 			}
 			
 			
-		}else{
-			
+		}else if(e.getID() == KeyEvent.KEY_RELEASED){
+			 if(e.getKeyCode() == TetrisConstant.KEY_DOWN){
+				 value.setSpeed(DEFAULT_SPEED);
+			 }
 		}
 		return false;
 	}

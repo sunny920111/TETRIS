@@ -10,6 +10,8 @@ public class PanelToListenerValue {
 	private int speed =0;
 	private int randnum =0;
 	private boolean[][] item;
+	private int rotateNum =0;
+	
 	
 	public static PanelToListenerValue getInstance(){	
 		if(panelToListenerValue == null){
@@ -49,6 +51,20 @@ public class PanelToListenerValue {
 
 	public void setItem(boolean[][] item) {
 		this.item = item;
+	}
+
+	/**
+	 * @return the rotateNum
+	 */
+	public int getRotateNum() {
+		return rotateNum;
+	}
+
+	/**
+	 * @param rotateNum the rotateNum to set
+	 */
+	public void setRotateNum(int rotateNum) {
+		this.rotateNum = rotateNum;
 	}
 	
 	
