@@ -63,9 +63,9 @@ public class GameFrame extends JFrame {
 			bgPanel.add(GameValue.getUsers(i));
 		}
 		
-		MenuPanel menu = new MenuPanel();
-		menu.setPreferredSize(new Dimension(PADDING_WIDTH-50,HEIGHT));
-		bgPanel.add(menu);
+	
+		GameValue.getMenu().setPreferredSize(new Dimension(PADDING_WIDTH-50,HEIGHT));
+		bgPanel.add(GameValue.getMenu());
 		
 		
 	}

@@ -15,7 +15,7 @@ public class GameController implements Runnable {
 	ValidationController valid = new ValidationController();
 	
 	private static final int DEFAULT_COL =5;
-	private static final int DEFAULT_SPEED =150;
+	private static final int DEFAULT_SPEED =200;
 	private static final int DEFAULT_ROTATE_NUM =0;
 	@Override
 	public void run() {
@@ -30,11 +30,14 @@ public class GameController implements Runnable {
 			value.setRandnum(TetrisItemController.getRandNum());
 			value.setSpeed(DEFAULT_SPEED);
 			value.setRotateNum(DEFAULT_ROTATE_NUM);
+			value.setHold(false);
+			value.setAlreadyHold(false);
 			
 			item = TetrisItemController.getRandomTetrisItem(value.getRandnum());
 			color= TetrisItemController.getColor(value.getRandnum());
 			
 			value.setItem(item);
+			value.setColor(color);
 			
 			if(valid.checkTetrisItemHeight(user.getStatue())){
 				GameValue.getUserThreads(0).stop();
@@ -46,14 +49,20 @@ public class GameController implements Runnable {
 				value.setRow(i);
 				
 				user.clear();			
-				user.drawBlock(i, value.getCol(), item[value.getRotateNum()], color);
+				user.drawBlock(i, value.getCol(), value.getItem()[value.getRotateNum()], value.getColor());
+		
 				
-				if(valid.checkBottomSide(item[value.getRotateNum()], user.getStatue(), i, value.getCol())){
+				if(value.isHold()){
+					break;
+				}
+
+				if(valid.checkBottomSide(value.getItem()[value.getRotateNum()], user.getStatue(), i, value.getCol())){
 					//True이면 경계선에 닿았다는 의미임. 
-					user.setStatue(item[value.getRotateNum()],i,value.getCol(),color);
+					user.setStatue(value.getItem()[value.getRotateNum()],i,value.getCol(),value.getColor());
 					break;
 				}
 				
+		
 				user.removeFullLine();
 				
 				try {

@@ -1,6 +1,8 @@
 package model;
 
 import view.GamePanel;
+import view.MenuPanel;
+import view.PreviewPanel;
 import controller.GameController;
 
 public class GameValue {
@@ -9,8 +11,11 @@ public class GameValue {
 	public static GameValue gameValue = new GameValue();
 	
 	private static GamePanel[] users;
+	private static MenuPanel menu;
 	private static Thread[] userThreads;
-
+	private static PreviewPanel hold;
+	private static PreviewPanel queue;
+	
 	private GameValue(){}
 	
 	public static GameValue getInstance(int userNum){	
@@ -30,6 +35,10 @@ public class GameValue {
 			
 		}
 		
+		hold = new PreviewPanel();
+		queue = new PreviewPanel();
+		menu = new MenuPanel();
+		
 		return gameValue;
 	}
 
@@ -47,6 +56,48 @@ public class GameValue {
 
 	public static void setUserThreads(Thread userThreads,int i) {
 		GameValue.userThreads[i] = userThreads;
+	}
+
+	/**
+	 * @return the menu
+	 */
+	public static MenuPanel getMenu() {
+		return menu;
+	}
+
+	/**
+	 * @param menu the menu to set
+	 */
+	public static void setMenu(MenuPanel menu) {
+		GameValue.menu = menu;
+	}
+
+	/**
+	 * @return the queue
+	 */
+	public static PreviewPanel getQueue() {
+		return queue;
+	}
+
+	/**
+	 * @param queue the queue to set
+	 */
+	public static void setQueue(PreviewPanel queue) {
+		GameValue.queue = queue;
+	}
+
+	/**
+	 * @return the hold
+	 */
+	public static PreviewPanel getHold() {
+		return hold;
+	}
+
+	/**
+	 * @param hold the hold to set
+	 */
+	public static void setHold(PreviewPanel hold) {
+		GameValue.hold = hold;
 	}
 
 }

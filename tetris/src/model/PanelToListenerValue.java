@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Color;
+
 public class PanelToListenerValue {
 	
 	
@@ -11,7 +13,11 @@ public class PanelToListenerValue {
 	private int randnum =0;
 	private boolean[][][] item;
 	private int rotateNum =0;
-	
+	private boolean hold = false;
+	private boolean alreadyHold =false;
+	private boolean[][][] holdItem;
+	private Color color;
+	private Color holdColor; 
 	
 	public static PanelToListenerValue getInstance(){	
 		if(panelToListenerValue == null){
@@ -65,6 +71,76 @@ public class PanelToListenerValue {
 	 */
 	public void setRotateNum(int rotateNum) {
 		this.rotateNum = rotateNum;
+	}
+
+	/**
+	 * @return the hold
+	 */
+	public boolean isHold() {
+		return hold;
+	}
+
+	/**
+	 * @param hold the hold to set
+	 */
+	public void setHold(boolean hold) {
+		this.hold = hold;
+	}
+
+	/**
+	 * @return the holdItem
+	 */
+	public boolean[][][] getHoldItem() {
+		return holdItem;
+	}
+
+	/**
+	 * @param holdItem the holdItem to set
+	 */
+	public void setHoldItem(boolean[][][] holdItem) {
+		this.holdItem = holdItem;
+	}
+
+	/**
+	 * @return the color
+	 */
+	public Color getColor() {
+		return color;
+	}
+
+	/**
+	 * @param color the color to set
+	 */
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	/**
+	 * @return the holdColor
+	 */
+	public Color getHoldColor() {
+		return holdColor;
+	}
+
+	/**
+	 * @param holdColor the holdColor to set
+	 */
+	public void setHoldColor(Color holdColor) {
+		this.holdColor = holdColor;
+	}
+
+	/**
+	 * @return the alreadyHold
+	 */
+	public boolean isAlreadyHold() {
+		return alreadyHold;
+	}
+
+	/**
+	 * @param alreadyHold the alreadyHold to set
+	 */
+	public void setAlreadyHold(boolean alreadyHold) {
+		this.alreadyHold = alreadyHold;
 	}
 	
 	
