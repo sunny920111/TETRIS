@@ -4,6 +4,7 @@ import view.GamePanel;
 import view.MenuPanel;
 import view.PreviewPanel;
 import controller.GameController;
+import controller.SoundContoller;
 
 public class GameValue {
 	//game이 동작할데 필요한 value들의 모임
@@ -15,13 +16,15 @@ public class GameValue {
 	private static Thread[] userThreads;
 	private static PreviewPanel hold;
 	private static PreviewPanel queue;
-	
+	private static Thread sound; 
 	private GameValue(){}
 	
 	public static GameValue getInstance(int userNum){	
 		if(gameValue == null){
 			gameValue = new GameValue();
 		}
+		setSound(new Thread(new SoundContoller()));
+		
 		
 		users = new GamePanel[userNum];
 		userThreads = new Thread[userNum];
@@ -98,6 +101,20 @@ public class GameValue {
 	 */
 	public static void setHold(PreviewPanel hold) {
 		GameValue.hold = hold;
+	}
+
+	/**
+	 * @return the sound
+	 */
+	public static Thread getSound() {
+		return sound;
+	}
+
+	/**
+	 * @param sound the sound to set
+	 */
+	public static void setSound(Thread sound) {
+		GameValue.sound = sound;
 	}
 
 }

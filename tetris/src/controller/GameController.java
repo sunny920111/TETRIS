@@ -16,6 +16,8 @@ public class GameController implements Runnable {
 	PanelToListenerValue value = PanelToListenerValue.getInstance();
 	GamePanel user = GameValue.getUsers(0);
 	ValidationController valid = new ValidationController();
+	SoundContoller sound = new SoundContoller();
+	
 	
 	private static final int DEFAULT_COL =5;
 	private static final int DEFAULT_SPEED =200;
@@ -23,7 +25,13 @@ public class GameController implements Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-
+	
+		if(GameValue.getSound() == null || !GameValue.getSound().isAlive()){
+			GameValue.setSound(new Thread(new SoundContoller()));
+			GameValue.getSound().start();
+		}else{
+			GameValue.getSound().start();
+		}
 		
 		boolean[][][] item;
 		Color color; 

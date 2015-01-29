@@ -10,6 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class PreviewPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final int ROWS = 7;
 	private static final int COLS = 7;
 
@@ -72,6 +76,24 @@ public class PreviewPanel extends JPanel {
 					if(item[i][j]){
 						pixel[3+i][colIndex+j].setBackground(color);
 					}
+			}
+		}
+	}
+	
+	public void allClear(){
+		for(int i=0; i<ROWS ; i++){
+			for(int j=0; j<COLS ; j++){
+				
+				if(i==0 || i== ROWS-1){
+					pixel[i][j].setBackground(Color.LIGHT_GRAY);
+				}else if(j==0 || j == COLS-1){
+					pixel[i][j].setBackground(Color.LIGHT_GRAY);
+				}else{
+					pixel[i][j].setBackground(Color.white);
+				}
+			
+
+				
 			}
 		}
 	}
