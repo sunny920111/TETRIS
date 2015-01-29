@@ -8,9 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import controller.GameController;
-import controller.TetrisItemController;
 import model.GameValue;
+import model.PanelToListenerValue;
 import model.TetrisConstant;
 
 public class GamePanel extends JPanel {
@@ -45,6 +44,21 @@ public class GamePanel extends JPanel {
 		}
 	}
 	
+	public void allClear(){
+		for(int i=0; i< TetrisConstant.ROWS; i++){
+			for(int j=0; j<TetrisConstant.COLS; j++){
+				
+				color[i][j] = Color.WHITE;
+				statue[i][j] = false;
+				pixels[i][j].setBackground(Color.WHITE);
+				
+			}
+		}
+		
+		PanelToListenerValue.setLineNum(0);
+		((JLabel)GameValue.getMenu().getComponent(7)).setText(""+PanelToListenerValue.getLineNum());
+	}
+	
 	public void clear(){
 		for(int i=0; i< TetrisConstant.ROWS; i++){
 			for(int j=0; j<TetrisConstant.COLS; j++){
@@ -75,6 +89,10 @@ public class GamePanel extends JPanel {
 				lineIndex[index++] = i;
 			}
 		}
+		
+		PanelToListenerValue.setLineNum(PanelToListenerValue.getLineNum()+index);
+		((JLabel)GameValue.getMenu().getComponent(7)).setText(""+PanelToListenerValue.getLineNum());
+
 		
 		for(int i=0; i<lineIndex.length;i++){
 			for(int j=lineIndex[i]; j>0;j--){
@@ -121,6 +139,8 @@ public class GamePanel extends JPanel {
 		}
 		
 	}
+
+
 
 
 }

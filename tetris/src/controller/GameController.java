@@ -2,6 +2,9 @@ package controller;
 
 import java.awt.Color;
 
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 import model.GameValue;
 import model.PanelToListenerValue;
 import model.TetrisConstant;
@@ -39,9 +42,8 @@ public class GameController implements Runnable {
 			value.setItem(item);
 			value.setColor(color);
 			
-			if(valid.checkTetrisItemHeight(user.getStatue())){
-				GameValue.getUserThreads(0).stop();
-			}
+			valid.checkTetrisItemHeight(user.getStatue());
+		
 
 			
 			for(int i=0; i<TetrisConstant.ROWS;i++){
@@ -62,6 +64,10 @@ public class GameController implements Runnable {
 					break;
 				}
 				
+				
+				while(value.isPause()){
+					System.out.println("PAUSE");
+				}
 		
 				user.removeFullLine();
 				

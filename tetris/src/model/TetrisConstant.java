@@ -5,10 +5,18 @@ public class TetrisConstant {
 	public static final String GAMEMODE_2P = "2P";
 	
 	
+	public static final String VAL_Y = "YES";
+	public static final String VAL_N = "NO";
+	
+	
 	public static final int ROWS = 25;
 	public static final int COLS = 12;
 	
 	public static final String START_BTN ="START";
+	public static final String STOP_BTN ="STOP";
+	public static final String PAUSE_BTN ="PAUSE";
+	public static final String RESUME_BTN ="RESUME";
+	
 	
 	public static final int KEY_LEFT = 37;
 	public static final int KEY_RIGHT = 39;

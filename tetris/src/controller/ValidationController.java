@@ -1,5 +1,9 @@
 package controller;
 
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
+import model.GameValue;
 import model.TetrisConstant;
 
 public class ValidationController {
@@ -71,15 +75,23 @@ public class ValidationController {
 		return false; 
 	}
 	
-	public boolean checkTetrisItemHeight(boolean[][] statue){
+	public void checkTetrisItemHeight(boolean[][] statue){
 
 		for(int i=0; i< TetrisConstant.COLS ;i++){
 			if(statue[0][i]){
-				return true;
+				int selection = JOptionPane.showConfirmDialog(null, "Do you want to restart?",
+					        "TERIS", JOptionPane.YES_NO_OPTION);
+					    
+					 if(selection == JOptionPane.YES_OPTION){
+					    GameValue.getUsers(0).allClear();
+					  }else{
+					    GameValue.getUserThreads(0).stop();
+					  }
+				((JButton)GameValue.getMenu().getComponent(0)).setText(TetrisConstant.START_BTN);
+				break;
 			}
 		}
 		
-		return false;
 	}
 	
 	

@@ -31,16 +31,16 @@ public class KeyBoardController implements KeyEventDispatcher {
 			if(e.getKeyCode() == TetrisConstant.KEY_LEFT){
 				
 				if(!valid.checkLeftSide(value.getItem()[value.getRotateNum()], user.getStatue(), value.getRow(), value.getCol())){
-					if(!valid.checkBottomSide(value.getItem()[value.getRotateNum()], user.getStatue(), value.getRow(), value.getCol())){
+					//if(!valid.checkBottomSide(value.getItem()[value.getRotateNum()], user.getStatue(), value.getRow(), value.getCol())){
 						value.setCol(value.getCol()-1);
-					}
+					//}
 				}
 	
 			}else if(e.getKeyCode() == TetrisConstant.KEY_RIGHT){
 				if(!valid.checkRightSide(value.getItem()[value.getRotateNum()], user.getStatue(), value.getRow(), value.getCol())){
-					if(!valid.checkBottomSide(value.getItem()[value.getRotateNum()], user.getStatue(), value.getRow(), value.getCol())){
+					//if(!valid.checkBottomSide(value.getItem()[value.getRotateNum()], user.getStatue(), value.getRow(), value.getCol())){
 						value.setCol(value.getCol()+1);
-					}
+					//}
 				}
 
 			}else if(e.getKeyCode() == TetrisConstant.KEY_DOWN){

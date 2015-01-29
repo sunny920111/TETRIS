@@ -18,7 +18,10 @@ public class PanelToListenerValue {
 	private boolean[][][] holdItem;
 	private Color color;
 	private Color holdColor; 
-	
+	private static boolean pause = false;
+	private static int lineNum =0;
+
+
 	public static PanelToListenerValue getInstance(){	
 		if(panelToListenerValue == null){
 			panelToListenerValue = new PanelToListenerValue();
@@ -142,6 +145,33 @@ public class PanelToListenerValue {
 	public void setAlreadyHold(boolean alreadyHold) {
 		this.alreadyHold = alreadyHold;
 	}
-	
-	
+
+
+	/**
+	 * @return the lineNum
+	 */
+	public static int getLineNum() {
+		return lineNum;
+	}
+
+	/**
+	 * @param lineNum the lineNum to set
+	 */
+	public static void setLineNum(int lineNum) {
+		PanelToListenerValue.lineNum = lineNum;
+	}
+
+	/**
+	 * @return the pause
+	 */
+	public static boolean isPause() {
+		return pause;
+	}
+
+	/**
+	 * @param pause the pause to set
+	 */
+	public static void setPause(boolean pause) {
+		PanelToListenerValue.pause = pause;
+	}
 }
