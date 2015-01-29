@@ -1,9 +1,8 @@
 package controller;
 
 import java.awt.Color;
-
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import model.GameValue;
 import model.PanelToListenerValue;
@@ -22,9 +21,12 @@ public class GameController implements Runnable {
 	private static final int DEFAULT_COL =5;
 	private static final int DEFAULT_SPEED =200;
 	private static final int DEFAULT_ROTATE_NUM =0;
+	private static final int QUEUE_SIZE =2;
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
+		boolean init= false ;
+		int[] queueItem = new int[QUEUE_SIZE];
 	
 		if(GameValue.getSound() == null || !GameValue.getSound().isAlive()){
 			GameValue.setSound(new Thread(new SoundContoller()));
@@ -44,8 +46,23 @@ public class GameController implements Runnable {
 			value.setHold(false);
 			value.setAlreadyHold(false);
 			
-			item = TetrisItemController.getRandomTetrisItem(value.getRandnum());
-			color= TetrisItemController.getColor(value.getRandnum());
+			if(init){
+				for(int i=0; i < QUEUE_SIZE; i++){
+					queueItem[i] =value.getRandnum();
+				}
+				init = false;
+			}else{
+				for(int i=0; i < QUEUE_SIZE-1; i++){
+					queueItem[i] = queueItem[i+1];
+				}
+				queueItem[QUEUE_SIZE-1] =value.getRandnum();
+				
+			}
+			
+			GameValue.getQueue().drawHold(TetrisItemController.getRandomTetrisItem(queueItem[1])[value.getRotateNum()], TetrisItemController.getColor(queueItem[1]));
+			
+			item = TetrisItemController.getRandomTetrisItem(queueItem[0]);
+			color= TetrisItemController.getColor(queueItem[0]);
 			
 			value.setItem(item);
 			value.setColor(color);
