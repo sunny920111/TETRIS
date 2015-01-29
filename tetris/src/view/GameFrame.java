@@ -58,7 +58,7 @@ public class GameFrame extends JFrame {
 		
 		GameValue.getInstance(userNum);
 		
-		for(int i=0; i< userNum ; i++){
+		for(int i=userNum-1; i >= 0 ; i--){
 			GameValue.getUsers(i).setPreferredSize(new Dimension(WIDTH,HEIGHT));
 			bgPanel.add(GameValue.getUsers(i));
 		}

@@ -16,6 +16,7 @@ import javax.swing.UIManager;
 
 import model.GameValue;
 import model.PanelToListenerValue;
+import model.TetrisConstant;
 import controller.MenuButtonListener;
 
 public class MenuPanel extends JPanel {
@@ -31,8 +32,8 @@ public class MenuPanel extends JPanel {
 		
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		JButton startBtn = new JButton("START");
-		JButton stopBtn = new JButton("STOP");
+		JButton startBtn = new JButton(TetrisConstant.START_BTN);
+		JButton stopBtn = new JButton(TetrisConstant.STOP_BTN);
 		stopBtn.setMaximumSize(new Dimension(200,50));
 		startBtn.setMaximumSize(new Dimension(200,50));
 		
