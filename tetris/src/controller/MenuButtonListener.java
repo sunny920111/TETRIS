@@ -17,13 +17,23 @@ public class MenuButtonListener implements ActionListener {
 		String id = ((JButton)e.getSource()).getText();
 		
 		if(TetrisConstant.START_BTN.equals(id)){
-			
-			if(GameValue.getUserThreads(0) == null || !GameValue.getUserThreads(0).isAlive()){
-				GameValue.setUserThreads(new Thread(new GameController()),0);
-				GameValue.getUserThreads(0).start();
-	
+			if(GameValue.getSound() == null || !GameValue.getSound().isAlive()){
+				GameValue.setSound(new Thread(new SoundContoller()));
+				GameValue.getSound().start();
+			}else{
+				GameValue.getSound().start();
 			}
+			
+			
+			for(int i=0 ; i< GameValue.getUserNum() ;i++){
+				if(GameValue.getUserThreads(i) == null || !GameValue.getUserThreads(i).isAlive()){
+					GameValue.setUserThreads(new Thread(new GameController()),i);
+					GameValue.getUserThreads(i).start();
+				}
+			}
+			
 			PanelToListenerValue.setPause(false);
+			PanelToListenerValue.setEnd(false);
 			((JButton)e.getSource()).setText(TetrisConstant.PAUSE_BTN);
 			
 		}else if(TetrisConstant.STOP_BTN.equals(id)){
@@ -32,6 +42,7 @@ public class MenuButtonListener implements ActionListener {
 			GameValue.getHold().allClear();
 			GameValue.getQueue().allClear();
 			GameValue.getSound().stop();
+			PanelToListenerValue.setEnd(true);
 			((JButton)GameValue.getMenu().getComponent(0)).setText(TetrisConstant.START_BTN);
 		}else if(TetrisConstant.PAUSE_BTN.equals(id)){
 			PanelToListenerValue.setPause(true);

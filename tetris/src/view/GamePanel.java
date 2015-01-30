@@ -140,6 +140,14 @@ public class GamePanel extends JPanel {
 		
 	}
 
+	public Color[][] getColor() {
+		return color;
+	}
+
+	public void setColor(Color[][] color) {
+		this.color = color;
+	}
+
 
 
 

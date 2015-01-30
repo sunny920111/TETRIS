@@ -4,6 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import model.GameValue;
+import model.PanelToListenerValue;
 import model.TetrisConstant;
 
 public class ValidationController {
@@ -60,7 +61,7 @@ public class ValidationController {
 		
 		for(int i=item.length-1; i >=0 ;i--){
 			for(int j=0; j<item[i].length;j++){
-				if(row+item.length == TetrisConstant.ROWS){ //하단에 내려왔을때
+				if(row+item.length >= TetrisConstant.ROWS){ //하단에 내려왔을때
 					return true; 
 				}else{
 					if(col+j <TetrisConstant.COLS){
@@ -84,6 +85,9 @@ public class ValidationController {
 					    
 					 if(selection == JOptionPane.YES_OPTION){
 					    GameValue.getUsers(0).allClear();
+					    GameValue.getQueue().allClear();
+					    GameValue.getHold().allClear();
+					    PanelToListenerValue.setEnd(true);
 					  }else{
 					    GameValue.getUserThreads(0).stop();
 					  }

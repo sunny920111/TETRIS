@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import model.GameValue;
 import model.TetrisConstant;
+import controller.ClientController;
 import controller.KeyBoardController;
 
 public class GameFrame extends JFrame {
@@ -53,10 +54,11 @@ public class GameFrame extends JFrame {
 		}else{
 			setSize((WIDTH*2)+PADDING_WIDTH+ADDTIODN_WIDTH,HEIGHT+ADDTIODN_HEIGHT);
 			userNum =2;
+	
 		}
-		
-		
 		GameValue.getInstance(userNum);
+		GameValue.setUserNum(userNum);
+
 		
 		for(int i=userNum-1; i >= 0 ; i--){
 			GameValue.getUsers(i).setPreferredSize(new Dimension(WIDTH,HEIGHT));
@@ -66,6 +68,12 @@ public class GameFrame extends JFrame {
 	
 		GameValue.getMenu().setPreferredSize(new Dimension(PADDING_WIDTH-50,HEIGHT));
 		bgPanel.add(GameValue.getMenu());
+		
+		
+		if(userNum >=2){
+			GameValue.setClientThread(new Thread(new ClientController(GameValue.getClientObj(),userNum)));
+			GameValue.getClientThread().start();
+		}
 		
 		
 	}

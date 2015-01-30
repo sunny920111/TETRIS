@@ -20,6 +20,7 @@ public class PanelToListenerValue {
 	private Color holdColor; 
 	private static boolean pause = false;
 	private static int lineNum =0;
+	private static boolean end = false;
 
 
 	public static PanelToListenerValue getInstance(){	
@@ -173,5 +174,19 @@ public class PanelToListenerValue {
 	 */
 	public static void setPause(boolean pause) {
 		PanelToListenerValue.pause = pause;
+	}
+
+	/**
+	 * @return the end
+	 */
+	public static boolean isEnd() {
+		return end;
+	}
+
+	/**
+	 * @param end the end to set
+	 */
+	public static void setEnd(boolean end) {
+		PanelToListenerValue.end = end;
 	}
 }

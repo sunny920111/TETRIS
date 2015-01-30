@@ -17,7 +17,6 @@ public class Main {
 	        "TERIS", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
 	   
 	    if(selection != null){
-	    	new ClientController();
 	    	new GameFrame(selection.toString());
 	    }
 	  

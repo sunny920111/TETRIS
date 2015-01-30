@@ -17,15 +17,20 @@ public class GameValue {
 	private static PreviewPanel hold;
 	private static PreviewPanel queue;
 	private static Thread sound; 
+	private static ClientData clientObj;
+	private static Thread clientThread; 
+	private static int userNum;
 	private GameValue(){}
 	
 	public static GameValue getInstance(int userNum){	
 		if(gameValue == null){
 			gameValue = new GameValue();
 		}
+		
 		setSound(new Thread(new SoundContoller()));
 		
-		
+		setClientObj(new ClientData());
+		setClientThread(new Thread());
 		users = new GamePanel[userNum];
 		userThreads = new Thread[userNum];
 		for(int i=0; i< userNum ; i++){
@@ -116,5 +121,49 @@ public class GameValue {
 	public static void setSound(Thread sound) {
 		GameValue.sound = sound;
 	}
+
+	/**
+	 * @return the clientObj
+	 */
+	public static ClientData getClientObj() {
+		return clientObj;
+	}
+
+	/**
+	 * @param clientObj the clientObj to set
+	 */
+	public static void setClientObj(ClientData clientObj) {
+		GameValue.clientObj = clientObj;
+	}
+
+	/**
+	 * @return the clientThread
+	 */
+	public static Thread getClientThread() {
+		return clientThread;
+	}
+
+	/**
+	 * @param clientThread the clientThread to set
+	 */
+	public static void setClientThread(Thread clientThread) {
+		GameValue.clientThread = clientThread;
+	}
+
+	/**
+	 * @return the userNum
+	 */
+	public static int getUserNum() {
+		return userNum;
+	}
+
+	/**
+	 * @param userNum the userNum to set
+	 */
+	public static void setUserNum(int userNum) {
+		GameValue.userNum = userNum;
+	}
+
+	
 
 }

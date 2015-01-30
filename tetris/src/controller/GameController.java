@@ -28,13 +28,7 @@ public class GameController implements Runnable {
 		boolean init= false ;
 		int[] queueItem = new int[QUEUE_SIZE];
 	
-		if(GameValue.getSound() == null || !GameValue.getSound().isAlive()){
-			GameValue.setSound(new Thread(new SoundContoller()));
-			GameValue.getSound().start();
-		}else{
-			GameValue.getSound().start();
-		}
-		
+	
 		boolean[][][] item;
 		Color color; 
 		
@@ -45,6 +39,7 @@ public class GameController implements Runnable {
 			value.setRotateNum(DEFAULT_ROTATE_NUM);
 			value.setHold(false);
 			value.setAlreadyHold(false);
+			PanelToListenerValue.setEnd(false);
 			
 			if(init){
 				for(int i=0; i < QUEUE_SIZE; i++){
@@ -93,8 +88,24 @@ public class GameController implements Runnable {
 				while(value.isPause()){
 					System.out.println("PAUSE");
 				}
+				
+				if(PanelToListenerValue.isEnd()){
+					init = true;
+					break;
+				}
 		
 				user.removeFullLine();
+		
+				
+				if(GameValue.getUserNum() >=2){
+
+					GameValue.getClientObj().setTetrisItem(
+							value.getItem()[value.getRotateNum()], value.getRow(), value.getCol(), value.getSpeed(),
+							value.getColor(),user.getStatue() , user.getColor(),
+							PanelToListenerValue.isEnd()
+					);
+				}
+			
 				
 				try {
 					Thread.sleep(value.getSpeed());
