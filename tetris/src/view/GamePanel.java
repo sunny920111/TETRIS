@@ -139,6 +139,9 @@ public class GamePanel extends JPanel {
 		}
 		
 	}
+	public void setStatue(boolean[][] statue){
+		this.statue = statue;
+	}
 
 	public Color[][] getColor() {
 		return color;

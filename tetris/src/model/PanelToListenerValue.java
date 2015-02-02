@@ -22,7 +22,6 @@ public class PanelToListenerValue {
 	private static int lineNum =0;
 	private static boolean end = false;
 
-
 	public static PanelToListenerValue getInstance(){	
 		if(panelToListenerValue == null){
 			panelToListenerValue = new PanelToListenerValue();
@@ -189,4 +188,6 @@ public class PanelToListenerValue {
 	public static void setEnd(boolean end) {
 		PanelToListenerValue.end = end;
 	}
+
+	
 }

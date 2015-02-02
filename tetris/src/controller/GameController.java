@@ -81,6 +81,17 @@ public class GameController implements Runnable {
 				if(valid.checkBottomSide(value.getItem()[value.getRotateNum()], user.getStatue(), i, value.getCol())){
 					//True이면 경계선에 닿았다는 의미임. 
 					user.setStatue(value.getItem()[value.getRotateNum()],i,value.getCol(),value.getColor());
+					
+					if(GameValue.getUserNum() >=2){
+
+						GameValue.getClientObj().setTetrisItem(
+								value.getItem()[value.getRotateNum()], value.getRow(), value.getCol(), value.getSpeed(),
+								value.getColor(),user.getStatue() , user.getColor(),
+								PanelToListenerValue.isEnd()
+						);
+					}
+		
+					
 					break;
 				}
 				

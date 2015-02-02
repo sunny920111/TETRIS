@@ -1,35 +1,47 @@
 package model;
 
+import java.io.DataOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.HashMap;
+
 public class ServerValue {
-	public static ServerValue severValue = new ServerValue();
+	public static ServerValue serverValue = new ServerValue();
 	
-	private static boolean wait = true;
-	private static int clientNum;
+	private static HashMap<String,ObjectOutputStream> clients;
+	private static HashMap<String,DataOutputStream> tempClienets;
+	private static boolean isWait = true;
 
 	private ServerValue(){}
 	
 	public static ServerValue getInstance(){
-		if(severValue == null){
-			severValue = new ServerValue();
+		if(serverValue == null){
+			serverValue = new ServerValue();
 		}
-		clientNum =0;
-		return severValue;
+		return serverValue; 
+	}
+
+	public static HashMap<String,ObjectOutputStream> getClients() {
+		return clients;
+	}
+
+	public static void setClients(HashMap<String,ObjectOutputStream> clients) {
+		ServerValue.clients = clients;
 	}
 
 	public static boolean isWait() {
-		return wait;
+		return isWait;
 	}
 
-	public static void setWait(boolean wait) {
-		ServerValue.wait = wait;
+	public static void setWait(boolean isWait) {
+		ServerValue.isWait = isWait;
 	}
 
-	public static int getClientNum() {
-		return clientNum;
+	public static HashMap<String,DataOutputStream> getTempClienets() {
+		return tempClienets;
 	}
 
-	public static void setClientNum(int clientNum) {
-		ServerValue.clientNum = clientNum;
+	public static void setTempClienets(HashMap<String,DataOutputStream> tempClienets) {
+		ServerValue.tempClienets = tempClienets;
 	}
 
 

@@ -4,6 +4,7 @@ import view.GamePanel;
 import view.MenuPanel;
 import view.PreviewPanel;
 import controller.GameController;
+import controller.OtherClientController;
 import controller.SoundContoller;
 
 public class GameValue {
@@ -20,6 +21,7 @@ public class GameValue {
 	private static ClientData clientObj;
 	private static Thread clientThread; 
 	private static int userNum;
+	private static ClientData serverToClient;
 	private GameValue(){}
 	
 	public static GameValue getInstance(int userNum){	
@@ -30,6 +32,7 @@ public class GameValue {
 		setSound(new Thread(new SoundContoller()));
 		
 		setClientObj(new ClientData());
+		setServerToClient(new ClientData());
 		setClientThread(new Thread());
 		users = new GamePanel[userNum];
 		userThreads = new Thread[userNum];
@@ -37,10 +40,7 @@ public class GameValue {
 			users[i] = new GamePanel();	
 			if(i==0){
 				userThreads[i] = new Thread(new GameController());
-			}else{
-				userThreads[i] = new Thread();
 			}
-			
 		}
 		
 		hold = new PreviewPanel();
@@ -162,6 +162,20 @@ public class GameValue {
 	 */
 	public static void setUserNum(int userNum) {
 		GameValue.userNum = userNum;
+	}
+
+	/**
+	 * @return the serverToClient
+	 */
+	public static ClientData getServerToClient() {
+		return serverToClient;
+	}
+
+	/**
+	 * @param serverToClient the serverToClient to set
+	 */
+	public static void setServerToClient(ClientData serverToClient) {
+		GameValue.serverToClient = serverToClient;
 	}
 
 	

@@ -1,13 +1,15 @@
 package controller;
+
 import java.awt.Color;
 import java.util.Observable;
 import java.util.Observer;
 
 import model.ClientData;
+import model.GameValue;
+import model.TetrisConstant;
+import view.GamePanel;
 
-
-public class ClientDataContoller implements Observer {
-
+public class OtherClientController implements Observer {
 	Observable observable;  
 	private boolean[][] item;
 	private int row;
@@ -18,14 +20,18 @@ public class ClientDataContoller implements Observer {
 	private boolean[][] statue;
 	private Color[][] color;
 	private boolean isContinue;
+
+	ClientData otherUserData;
+	GamePanel user = GameValue.getUsers(1);
+
 	
-	public ClientDataContoller(Observable observable){
+	public OtherClientController( Observable observable){
 		this.observable = observable;
-		observable.addObserver(this);	
+		observable.addObserver(this);
 	}
-	
 	@Override
 	public void update(Observable obs, Object arg) {
+
 		// TODO Auto-generated method stub
 		if(obs instanceof ClientData){
 
@@ -39,13 +45,21 @@ public class ClientDataContoller implements Observer {
 			this.statue = data.getStatue();
 			this.color = data.getColor();
 			this.isContinue = data.isContinue();
-			
-			sendData();
+		
+			drawOtherUserPanel();
 		}
 	}
 	
-	public void sendData(){
+	public void drawOtherUserPanel(){		
+		
+		
+	 	user.setStatue(statue);
+	 	user.setColor(color);	
+		user.clear();	
+	 	user.drawBlock(row, col, item, itemColor);
 		
 	}
+	
+	
 
 }

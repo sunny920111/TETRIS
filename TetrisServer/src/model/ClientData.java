@@ -1,11 +1,9 @@
 package model;
+
 import java.awt.Color;
 import java.io.Serializable;
-import java.util.Observable;
 
-
-
-public class ClientData extends Observable implements Serializable{
+public class ClientData implements Serializable{
 	
 	private static final long serialVersionUID = 4303857901581648648L;
 	
@@ -20,38 +18,7 @@ public class ClientData extends Observable implements Serializable{
 	
 	private boolean isContinue;
 	
-	public ClientData(boolean[][] item, int row,int col, int speed, Color itemColor, boolean[][] statue, Color[][] color,boolean isContinue){
-		this.item = item;
-		this.row = row;
-		this.col = col;
-		this.speed = speed;
-		this.itemColor = itemColor;
-		this.statue = statue;
-		this.color = color;
-		this.isContinue = isContinue;
-		
-	}
 	
-	public ClientData(){}
-	
-	public void setTetrisItem(boolean[][] item, int row,int col, int speed, Color itemColor, boolean[][] statue, Color[][] color,boolean isContinue){
-		this.item = item;
-		this.row = row;
-		this.col = col;
-		this.speed = speed;
-		this.itemColor = itemColor;
-		this.statue = statue;
-		this.color = color;
-		this.isContinue = isContinue;
-		
-		changed();
-	}
-	
-	public void changed(){
-		setChanged();
-		notifyObservers();
-	}
-
 	public boolean[][] getItem() {
 		return item;
 	}
@@ -108,18 +75,13 @@ public class ClientData extends Observable implements Serializable{
 		this.color = color;
 	}
 
-	/**
-	 * @return the isContinue
-	 */
 	public boolean isContinue() {
 		return isContinue;
 	}
 
-	/**
-	 * @param isContinue the isContinue to set
-	 */
 	public void setContinue(boolean isContinue) {
 		this.isContinue = isContinue;
 	}
+
 	
 }

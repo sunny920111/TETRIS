@@ -71,7 +71,7 @@ public class GameFrame extends JFrame {
 		
 		
 		if(userNum >=2){
-			GameValue.setClientThread(new Thread(new ClientController(GameValue.getClientObj(),userNum)));
+			GameValue.setClientThread(new Thread(new ClientController(GameValue.getClientObj())));
 			GameValue.getClientThread().start();
 		}
 		

@@ -25,12 +25,11 @@ public class MenuButtonListener implements ActionListener {
 			}
 			
 			
-			for(int i=0 ; i< GameValue.getUserNum() ;i++){
-				if(GameValue.getUserThreads(i) == null || !GameValue.getUserThreads(i).isAlive()){
-					GameValue.setUserThreads(new Thread(new GameController()),i);
-					GameValue.getUserThreads(i).start();
-				}
+			if(GameValue.getUserThreads(0) == null || !GameValue.getUserThreads(0).isAlive()){
+				GameValue.setUserThreads(new Thread(new GameController()),0);
+				GameValue.getUserThreads(0).start();
 			}
+			
 			
 			PanelToListenerValue.setPause(false);
 			PanelToListenerValue.setEnd(false);
