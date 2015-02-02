@@ -64,15 +64,7 @@ public class Sender implements Observer {
 	public void sendToServer(){
 		
 		dataToServer = new ClientData(item,row,col,speed,itemColor,statue,color,isContinue);
-	
-		
-		System.out.println("------------------------------------------------------");
-		for(int i=0; i< 25;i++){
-			for(int j=0; j<12;j++){
-				System.out.print(dataToServer.getStatue()[i][j]+" ");
-			}
-			System.out.println("");
-		}
+
 		try {
 			oos.writeObject(dataToServer);
 		} catch (IOException e) {

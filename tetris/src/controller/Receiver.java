@@ -28,6 +28,14 @@ public class Receiver extends Thread {
 			try {
 				ClientData data = (ClientData)ois.readObject();
 				GameValue.getServerToClient().setTetrisItem(data.getItem(), data.getRow(), data.getCol(), data.getSpeed(), data.getItemColor(), data.getStatue(), data.getColor(), data.isContinue());
+				System.out.println("------------------------------------------------------");
+				for(int i=0; i< 25;i++){
+					for(int j=0; j<12;j++){
+						System.out.print(data.getStatue()[i][j]+" ");
+					}
+					System.out.println("");
+				}
+			
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -23,6 +23,7 @@ public class MultiTetrisServer {
 		ServerValue.setClients(new HashMap<String, ObjectOutputStream>());
 		ServerValue.setTempClienets(new HashMap<String, DataOutputStream>());
 		Collections.synchronizedMap(ServerValue.getClients());
+		Collections.synchronizedMap(ServerValue.getTempClienets());
 	}
 	
 	public void start(){

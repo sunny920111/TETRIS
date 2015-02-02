@@ -48,17 +48,18 @@ public class ClientController implements Runnable{
             dos.writeUTF("USER "+getTime());
             
           
-         /*   String msg = dis.readUTF();
+            String msg = dis.readUTF();
             System.out.println(msg);
        
             if("[START]".equals(msg)){
+            	
+            	dos.writeUTF("[START]");
             	if(GameValue.getUserThreads(0) == null || !GameValue.getUserThreads(0).isAlive()){
         			GameValue.setUserThreads(new Thread(new GameController()),0);
         			GameValue.getUserThreads(0).start();
         		}
             }
 
-           System.out.println("??????????");*/
            Receiver reciever = new Receiver(socket);
            new Sender(data,socket);
             

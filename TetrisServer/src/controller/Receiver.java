@@ -59,7 +59,7 @@ public class Receiver extends Thread {
 			
 			oos = new ObjectOutputStream(out);
 			ServerValue.getClients().put(name, oos);
-		/*	dos = new DataOutputStream(out);
+			/*dos = new DataOutputStream(out);
 			ServerValue.getTempClienets().put(name, dos);
 			
 			while(true){
@@ -69,7 +69,14 @@ public class Receiver extends Thread {
 					break;
 				}
 			}
-			*/
+			String msg = dis.readUTF();
+		
+			while(true){
+				if("[START]".equals(msg)){
+					break;
+				}
+			}
+		*/
 			ois = new ObjectInputStream(in);
 			
 			while(ois != null){
@@ -83,12 +90,20 @@ public class Receiver extends Thread {
 			// TODO Auto-generated catch block 
 			e.printStackTrace();
 		}finally{
-			
+	
 		}
 		
 	}
 	
 	public void sendToAll(ClientData data){
+		
+		System.out.println("------------------------------------------------------");
+		for(int i=0; i< 25;i++){
+			for(int j=0; j<12;j++){
+				System.out.print(data.getStatue()[i][j]+" ");
+			}
+			System.out.println("");
+		}
 		Iterator<String> it = ServerValue.getClients().keySet().iterator();
 	
 		while(it.hasNext()){
@@ -110,15 +125,15 @@ public class Receiver extends Thread {
 	
 	public void sendToAll(String msg){
 		Iterator<String> it = ServerValue.getTempClienets().keySet().iterator();
-	System.out.println(msg);
+
 		while(it.hasNext()){
 			try {
 			
 				String index = it.next();
-				if(!name.equals((String)index)){
-					DataOutputStream out = ServerValue.getTempClienets().get(index);
-					out.writeUTF(msg);
-				}
+				System.out.println(msg);
+				DataOutputStream out = ServerValue.getTempClienets().get(index);
+				out.writeUTF(msg);
+				
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
