@@ -3,6 +3,8 @@ package controller;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
@@ -46,26 +48,11 @@ public class ClientController implements Runnable{
   
             dos = new DataOutputStream(out);
             dos.writeUTF("USER "+getTime());
-            
-          
-            String msg = dis.readUTF();
-            System.out.println(msg);
+      
+        	new Sender(data,socket);
+        	new Receiver(socket).start();
+        	
        
-            if("[START]".equals(msg)){
-            	
-            	dos.writeUTF("[START]");
-            	if(GameValue.getUserThreads(0) == null || !GameValue.getUserThreads(0).isAlive()){
-        			GameValue.setUserThreads(new Thread(new GameController()),0);
-        			GameValue.getUserThreads(0).start();
-        		}
-            }
-
-           Receiver reciever = new Receiver(socket);
-           new Sender(data,socket);
-            
-           reciever.start();
-           
-
         }catch (Exception e) {
             e.printStackTrace();
         }

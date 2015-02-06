@@ -12,6 +12,7 @@ public class Receiver extends Thread {
 	ObjectInputStream ois;
 	 
 	public Receiver(Socket socket){
+	
 		this.socket = socket;
 		
 		try {
@@ -24,25 +25,39 @@ public class Receiver extends Thread {
 	}
 	
 	public void run(){
+
 		while(ois != null){
-			try {
-				ClientData data = (ClientData)ois.readObject();
-				GameValue.getServerToClient().setTetrisItem(data.getItem(), data.getRow(), data.getCol(), data.getSpeed(), data.getItemColor(), data.getStatue(), data.getColor(), data.isContinue());
-				System.out.println("------------------------------------------------------");
-				for(int i=0; i< 25;i++){
-					for(int j=0; j<12;j++){
-						System.out.print(data.getStatue()[i][j]+" ");
-					}
-					System.out.println("");
-				}
 			
-			} catch (ClassNotFoundException e) {
+			Object input = null;
+			try {
+				input = ois.readObject();
+				if(input instanceof String ){
+					/*System.out.println((String)input);
+					if("[START]".equals((String)input)){
+						if(GameValue.getUserThreads(0) == null || !GameValue.getUserThreads(0).isAlive()){
+							GameValue.setUserThreads(new Thread(new GameController()),0);
+							GameValue.getUserThreads(0).start();
+						}else{
+							GameValue.getUserThreads(0).start();
+						}
+						
+					}*/
+	
+				}else if(input instanceof ClientData){
+					ClientData data = (ClientData)input;
+					GameValue.getServerToClient().setTetrisItem(data.getItem(), data.getRow(), data.getCol(), data.getSpeed(), data.getItemColor(), data.getStatue(), data.getColor(), data.isContinue());
+					System.out.println("[Receiver] row :"+data.getRow()+","+" col :"+data.getCol());
+				}
+				
+			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e1.printStackTrace();
 			}
+			
+			
 		}
 	}
 }

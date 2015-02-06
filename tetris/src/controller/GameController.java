@@ -1,8 +1,6 @@
 package controller;
 
 import java.awt.Color;
-import java.util.LinkedList;
-import java.util.Queue;
 
 import model.GameValue;
 import model.PanelToListenerValue;
@@ -31,7 +29,7 @@ public class GameController implements Runnable {
 	
 		boolean[][][] item;
 		Color color; 
-		
+
 		while(true){
 			value.setCol(DEFAULT_COL);
 			value.setRandnum(TetrisItemController.getRandNum());
@@ -72,7 +70,15 @@ public class GameController implements Runnable {
 				
 				user.clear();			
 				user.drawBlock(i, value.getCol(), value.getItem()[value.getRotateNum()], value.getColor());
-		
+				if(GameValue.getUserNum() >=2){
+
+					GameValue.getClientObj().setTetrisItem(
+							value.getItem()[value.getRotateNum()], value.getRow(), value.getCol(), value.getSpeed(),
+							value.getColor(),user.getStatue() , user.getColor(),
+							PanelToListenerValue.isEnd()
+					);
+				}
+	
 				
 				if(value.isHold()){
 					break;
@@ -81,17 +87,7 @@ public class GameController implements Runnable {
 				if(valid.checkBottomSide(value.getItem()[value.getRotateNum()], user.getStatue(), i, value.getCol())){
 					//True이면 경계선에 닿았다는 의미임. 
 					user.setStatue(value.getItem()[value.getRotateNum()],i,value.getCol(),value.getColor());
-					
-					if(GameValue.getUserNum() >=2){
 
-						GameValue.getClientObj().setTetrisItem(
-								value.getItem()[value.getRotateNum()], value.getRow(), value.getCol(), value.getSpeed(),
-								value.getColor(),user.getStatue() , user.getColor(),
-								PanelToListenerValue.isEnd()
-						);
-					}
-		
-					
 					break;
 				}
 				
@@ -106,17 +102,7 @@ public class GameController implements Runnable {
 				}
 		
 				user.removeFullLine();
-		
-				
-				if(GameValue.getUserNum() >=2){
-
-					GameValue.getClientObj().setTetrisItem(
-							value.getItem()[value.getRotateNum()], value.getRow(), value.getCol(), value.getSpeed(),
-							value.getColor(),user.getStatue() , user.getColor(),
-							PanelToListenerValue.isEnd()
-					);
-				}
-			
+	
 				
 				try {
 					Thread.sleep(value.getSpeed());

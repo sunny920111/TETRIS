@@ -12,7 +12,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		JDialog.setDefaultLookAndFeelDecorated(true);
 	    Object[] selectionValues = { TetrisConstant.GAMEMODE_1P, TetrisConstant.GAMEMODE_2P };
-	    String initialSelection = TetrisConstant.GAMEMODE_1P;
+	    String initialSelection = TetrisConstant.GAMEMODE_2P;
 	    Object selection = JOptionPane.showInputDialog(null, "Please choose game mode.",
 	        "TERIS", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
 	   

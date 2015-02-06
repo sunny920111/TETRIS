@@ -28,6 +28,8 @@ public class MenuButtonListener implements ActionListener {
 			if(GameValue.getUserThreads(0) == null || !GameValue.getUserThreads(0).isAlive()){
 				GameValue.setUserThreads(new Thread(new GameController()),0);
 				GameValue.getUserThreads(0).start();
+			}else{
+				GameValue.getUserThreads(0).start();
 			}
 			
 			

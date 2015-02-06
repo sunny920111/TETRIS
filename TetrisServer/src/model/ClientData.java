@@ -18,6 +18,15 @@ public class ClientData implements Serializable{
 	
 	private boolean isContinue;
 	
+	public ClientData(boolean[][] item,int row, int col, int speed, boolean[][] statue, Color[][] color,boolean isContinue){
+		this.item = item;
+		this.row = row;
+		this.col = col;
+		this.speed = speed;
+		this.statue = statue;
+		this.color = color;
+		this.isContinue = isContinue;
+	}
 	
 	public boolean[][] getItem() {
 		return item;

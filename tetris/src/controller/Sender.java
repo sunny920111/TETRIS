@@ -8,7 +8,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import model.ClientData;
-import model.TetrisConstant;
+import model.GameValue;
 
 public class Sender implements Observer {
 	
@@ -29,9 +29,9 @@ public class Sender implements Observer {
 	Socket socket;  
 	
 	public Sender( Observable observable,Socket socket){
+
 		this.observable = observable;
 		observable.addObserver(this);
-		
 		this.socket = socket;
 		try {
 			oos = new ObjectOutputStream(socket.getOutputStream());
@@ -39,6 +39,7 @@ public class Sender implements Observer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+			
 	}
 	
 	@Override
@@ -63,10 +64,23 @@ public class Sender implements Observer {
 
 	public void sendToServer(){
 		
-		dataToServer = new ClientData(item,row,col,speed,itemColor,statue,color,isContinue);
+	/*	
+		System.out.println("------------------------------------------------------");
+		for(int i=0; i< 25;i++){
+			for(int j=0; j<12;j++){
+				System.out.print(statue[i][j]+" ");
+			}
+			System.out.println("");
+		}*/
+		
+		
+		System.out.println("[Sender] row :"+row+","+" col :"+col);
 
+		dataToServer = new ClientData(item,row,col,speed,itemColor,statue,color,isContinue);
+		
 		try {
 			oos.writeObject(dataToServer);
+			oos.reset();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

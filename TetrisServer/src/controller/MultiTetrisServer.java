@@ -32,7 +32,7 @@ public class MultiTetrisServer {
 		try {
 			Socket socket;
 			serverSocket = new ServerSocket(7777);
-			System.out.println("Server is ready to connect with clients");
+			System.out.println("Ready");
 		
 			
 			while(true){
@@ -40,6 +40,7 @@ public class MultiTetrisServer {
 				
 				Receiver receiver = new Receiver(socket);
 				receiver.start();
+				
 			
 			}
 		} catch (IOException e) {
