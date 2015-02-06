@@ -10,6 +10,8 @@ public class ServerValue {
 	private static HashMap<String,ObjectOutputStream> clients;
 	private static HashMap<String,DataOutputStream> tempClienets;
 	private static boolean isWait = true;
+	private String userName[] = new String[2];
+	
 
 	private ServerValue(){}
 	
@@ -17,6 +19,7 @@ public class ServerValue {
 		if(serverValue == null){
 			serverValue = new ServerValue();
 		}
+		
 		return serverValue; 
 	}
 
@@ -44,6 +47,13 @@ public class ServerValue {
 		ServerValue.tempClienets = tempClienets;
 	}
 
+	public String getUserName(int index) {
+		return userName[index];
+	}
+
+	public void setUserName(String userName,int index) {
+		this.userName[index] = userName;
+	}
 
 	
 }

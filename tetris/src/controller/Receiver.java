@@ -41,8 +41,8 @@ public class Receiver extends Thread {
 							GameValue.getUserThreads(0).start();
 						}
 						
-					}*/
-	
+					}
+	*/
 				}else if(input instanceof ClientData){
 					ClientData data = (ClientData)input;
 					GameValue.getServerToClient().setTetrisItem(data.getItem(), data.getRow(), data.getCol(), data.getSpeed(), data.getItemColor(), data.getStatue(), data.getColor(), data.isContinue());

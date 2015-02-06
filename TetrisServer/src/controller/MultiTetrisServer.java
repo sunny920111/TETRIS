@@ -41,7 +41,9 @@ public class MultiTetrisServer {
 				Receiver receiver = new Receiver(socket);
 				receiver.start();
 				
-			
+				/*Sender sender = new Sender(socket);
+				sender.start();
+			*/
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -28,7 +28,9 @@ public class Receiver extends Thread {
 	ObjectInputStream ois;
 	ObjectOutputStream oos; 
 	
-	String name; 
+	String name;
+	
+	ServerValue value = ServerValue.getInstance();
 	public Receiver(Socket socket){
 		this.socket = socket;
 		
@@ -60,6 +62,7 @@ public class Receiver extends Thread {
 			oos = new ObjectOutputStream(out);
 			ServerValue.getClients().put(name, oos);
 	
+		//	value.setUserName(name, ServerValue.getClients().size()-1);
 			
 			/*while(true){
 				if(ServerValue.getClients().size() ==2){
